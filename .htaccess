@@ -1,0 +1,2 @@
+php_value display_errors 0
+RewriteEngine On

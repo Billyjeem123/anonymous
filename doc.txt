@@ -1,0 +1,293 @@
+endpoint - https://bac.heartstories.com
+
+
+
+1. CreateArticle
+path - /article
+METHOD - POST
+data 
+    - userid - userid
+    - article - articleid
+success-response
+ (objects)
+    - success =>true
+    - message  => 'Article created successfully'
+    - userid => userid,
+    - article => article
+
+
+      error-response
+     (objects)
+      - success =>false
+     - message  => 'Unable to create article'
+
+
+
+
+    endpoint - https://bac.heartstories.com
+
+
+
+2. createcomment
+path - /createcomment
+METHOD - POST
+data 
+    - article_id - article_id
+    - comment - comment
+    - userid => userid,
+
+success-response
+ (objects)
+    - success =>true
+    - message  => 'Comment added successfully'
+    - userid => userid,
+    - comment => comment
+
+
+    error-response
+     (objects)
+      - success =>false
+    - message  => 'Fields cannot be empty'
+
+
+
+        endpoint - https://bac.heartstories.com
+
+
+
+3 . fetchArticle
+path - /fetchArticle
+METHOD - POST
+data 
+     empty
+success-response
+ (objects)
+    - success =>true
+    - id  => 'articleid'
+    - userid => userid,
+    - article => article,
+    - likes =>  likes
+
+
+    error-response
+     (objects)
+      - success =>false
+    - message  => 'error while fetching'
+
+
+        endpoint - https://bac.heartstories.com
+
+    4 . fetchComment
+path - / fetchComment
+METHOD - POST
+data 
+   article_id
+success-response
+ (objects)
+    - success =>true
+    - id  => 'commentid'
+    - article_id => article_id,
+    - comment => comment,
+    - userid =>  userid,
+     'total_count' => 'number of comment'
+
+
+    error-response
+     (objects)
+      - success =>false
+     - message  => 'commentid not found'
+
+
+
+        5 . fetchReply
+path - / fetchReply
+METHOD - POST
+data 
+   comment_id
+success-response
+ (objects)
+    - success =>true
+    - id  => 'replyid'
+    - comment_id => comment_id,
+    - reply => reply,
+    - userid =>  userid
+
+
+    error-response
+     (objects)
+      - success =>false
+     - message  => 'commentid not found'
+
+
+       6 . likeArticle
+path - / likeArticle
+METHOD - POST
+data 
+   article_id 
+   userid
+success-response
+ (objects)
+    - success =>true
+    - message =>  'liked'
+
+
+    error-response
+     (objects)
+      - success =>false
+     - message  => 'error'
+
+
+      7 . login
+path - / login
+METHOD - POST
+data 
+   username 
+   password
+success-response
+ (objects)
+    - success =>true
+    - message =>  'Logged in successfully',
+     - username =>  'username'
+
+
+    error-response
+     (objects)
+      - success =>false
+     - message  => 'Username and Password Doesnt Match'
+     - username =>  'username'
+
+    // if username or password does not exists
+
+     error-response
+     (objects)
+       'success' => false,
+        'message' => 'Username or password does not exist in our database',
+
+
+
+
+          8 . register
+path - / register
+METHOD - POST
+data 
+   username 
+   password
+success-response
+ (objects)
+                 'success' => true,
+                  'message' => 'Account created successfully',
+                  'username' =>  'username',
+                  'userid' => 'userid'
+
+
+ if user exists
+    error-response
+     (objects)
+                 'success' => false,
+              'message' => 'An account already exists with this username',
+              'username' =>  'username',
+
+    // if username or password is empty
+
+     error-response
+     (objects)
+       'success' => false,
+        'message' => "Username or password is required."
+
+
+
+          9 . reply
+path - / reply
+METHOD - POST
+data 
+   comment_id 
+   reply
+   userid
+success-response
+ (objects)
+                'success' => true,
+                 'message' => 'Reply Sent',
+
+
+ if error occours while processing
+    error-response
+     (objects)
+                'success' => false,
+                 'message' => 'Error While Processing',
+
+    // if Fields are empty
+
+     error-response
+     (objects)
+       'success' => false,
+        'message' => 'Fields Empty',
+
+
+
+
+         10 . unlikeArticle
+path - / unlikeArticle
+METHOD - POST
+data 
+   article_id 
+   userid
+success-response
+ (objects)
+    - success =>true
+    - message =>  'unliked'
+
+
+    error-response
+     (objects)
+      - success =>false
+     - message  => 'error while processing'
+
+
+//if article_id or userid is not provided
+      error-response
+     (objects)
+      'success' => false,
+    'message' => 'Userid or Post Not Provided'
+
+
+
+     10 . verifyLike
+path - / verifyLike
+METHOD - POST
+data 
+   article_id 
+   userid
+success-response
+ (objects)
+    'success' => true,
+    'message' => 'Liked'
+
+    error-response
+     (objects)
+      'success' => false,
+        'message' => 'Never been Liked',
+           
+
+
+//if article_id or userid is not provided
+      error-response
+     (objects)
+     'success' => false,
+    'message' => 'articleid or userid not provided'
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+    
